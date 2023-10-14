@@ -8,5 +8,10 @@ export default defineConfig({
   build: {
     outDir: './docs'
   },
-  base: '/vite-boilerplate/'
+  base: '/vite-boilerplate/',
+  server: {
+    watch: {
+      usePolling: true,
+    }
+  }
 });
