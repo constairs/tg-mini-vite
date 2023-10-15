@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useColorMode, useDisclosure, Grid, GridItem, Button, IconButton, Center, Heading, Modal, ModalContent, ModalOverlay, Image, CloseButton } from '@chakra-ui/react';
+import { useColorMode, useDisclosure, Grid, GridItem, Button, IconButton, Center, Heading, Modal, ModalContent, ModalOverlay, Image, HStack, CloseButton } from '@chakra-ui/react';
 import { SunIcon, MoonIcon, ChatIcon } from '@chakra-ui/icons';
 
 import errorImg from './assets/drive.gif';
@@ -43,25 +43,30 @@ function App() {
           Жестко хочу жрать!
         </Button>
       </Center>
-      <IconButton
-        isRound={true}
-        variant='solid'
-        colorScheme='teal'
-        aria-label='Add'
-        fontSize='1rem'
-        icon={colorMode === 'light' ? <SunIcon /> : <MoonIcon />}
-        onClick={toggleColorMode}
-      />
 
-      <IconButton
-        isRound={true}
-        variant='solid'
-        colorScheme='teal'
-        aria-label='Add'
-        fontSize='1rem'
-        icon={<ChatIcon />}
-        onClick={onOpen}
-      />
+      <Center p={4}>
+        <HStack>
+          <IconButton
+            isRound={true}
+            variant='solid'
+            colorScheme='teal'
+            aria-label='Add'
+            fontSize='1rem'
+            icon={colorMode === 'light' ? <SunIcon /> : <MoonIcon />}
+            onClick={toggleColorMode}
+          />
+
+          <IconButton
+            isRound={true}
+            variant='solid'
+            colorScheme='teal'
+            aria-label='Add'
+            fontSize='1rem'
+            icon={<ChatIcon />}
+            onClick={onOpen}
+          />
+        </HStack>
+      </Center>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent p={4}>

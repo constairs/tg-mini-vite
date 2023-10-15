@@ -8,7 +8,7 @@ export default defineConfig({
   build: {
     outDir: './docs'
   },
-  base: '/vite-boilerplate/',
+  base: '/tg-mini-vite/',
   server: {
     watch: {
       usePolling: true,
