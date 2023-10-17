@@ -1,20 +1,23 @@
-import { useState, useEffect } from 'react';
+import { useState, useContext, useEffect } from 'react';
+import WebApp from '@twa-dev/sdk';
 import { useColorMode, useDisclosure, Grid, GridItem, Button, IconButton, Center, Heading, Modal, ModalContent, ModalOverlay, Image, HStack, CloseButton } from '@chakra-ui/react';
 import { SunIcon, MoonIcon, ChatIcon } from '@chakra-ui/icons';
 
+import { AppContext } from './Context';
 import errorImg from './assets/drive.gif';
+import { Goods } from './types';
+import { GoodsCard } from './components/GoodsCard';
 
 import './App.css';
 
-import WebApp from '@twa-dev/sdk'
-import { Goods } from './types'
-import { GoodsCard } from './components/GoodsCard'
-
 function App() {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { cartItems } = useContext(AppContext);
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const { colorMode, toggleColorMode } = useColorMode();
 
   const [goods, setGoods] = useState<Goods[]>([]);
+
+  const cart = Object.values(cartItems);
 
   useEffect(() => {
     fetch('https://8012ef8b24365029.mokky.dev/goods')
@@ -52,7 +55,7 @@ function App() {
             colorScheme='teal'
             aria-label='Add'
             fontSize='1rem'
-            icon={colorMode === 'light' ? <SunIcon /> : <MoonIcon />}
+            icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
             onClick={toggleColorMode}
           />
 
@@ -75,8 +78,11 @@ function App() {
           <Image src={errorImg} borderRadius={4} alt="Ошибка" />
         </ModalContent>
       </Modal>
+      {!!cart.length && (
+        <div>cart</div>
+      )}
     </>
   )
 }
 
-export default App
+export default App;

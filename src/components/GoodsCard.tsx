@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardHeader, CardBody, Image, IconButton, HStack, useNumberInput } from '@chakra-ui/react';
+import { Card, CardBody, Image, IconButton, HStack, useNumberInput } from '@chakra-ui/react';
 import { AddIcon, MinusIcon } from '@chakra-ui/icons';
 
 import { Goods } from '../types';
@@ -24,9 +24,13 @@ export const GoodsCard: React.FC<GoodsCardProps> = ({
 
   return (
     <Card>
-      <CardHeader>
-      <HStack justify='center' maxW='320px'>
-          <IconButton
+      <CardBody p={1} pt={2}>
+        <Image src={item.img} alt={item.name} />
+      </CardBody>
+      <HStack justify="flex-end" maxW='320px'>
+        {+itemsValue && (
+          <>
+            <IconButton
               isRound={true}
               variant='solid'
               colorScheme='teal'
@@ -34,22 +38,20 @@ export const GoodsCard: React.FC<GoodsCardProps> = ({
               fontSize='1rem'
               icon={<MinusIcon />}
               {...dec}
-          />
-          <div>{itemsValue}</div>
-          <IconButton
-              isRound={true}
-              variant='solid'
-              colorScheme='teal'
-              aria-label='Add'
-              fontSize='1rem'
-              icon={<AddIcon />}
-              {...inc}
-          />
-        </HStack>
-      </CardHeader>
-      <CardBody p={4} pt={0}>
-        <Image src={item.img} alt={item.name} />
-      </CardBody>
+            />
+            <div>{itemsValue}</div>
+          </>
+        )}
+        <IconButton
+          isRound={true}
+          variant='solid'
+          colorScheme='teal'
+          aria-label='Add'
+          fontSize='1rem'
+          icon={<AddIcon />}
+          {...inc}
+        />
+      </HStack>
     </Card>
   );
 };
